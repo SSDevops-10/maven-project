@@ -4,39 +4,54 @@ pipeline {
 		  stage ('clean')
                 {
                         steps {
-                           sh '/opt/maven/apache-maven-3.8.6/bin/mvn clean package'
+                           sh '/opt/maven/apache-maven-3.8.6/bin/mvn clean'
                         }
                 }
 
-		stage ('SCM initialize')
+		stage ('validate')
 		{
 			steps {
-			echo "Step 1"
+			sh '/opt/maven/apache-maven-3.8.6/bin/mvn clean validate'
 			}
 		}
-		stage ('Maven validate')
+		stage ('compile')
 		{
 			steps {
-			echo "Maven validate"
+			sh '/opt/maven/apache-maven-3.8.6/bin/mvn clean compile'
 			}
 		}
-		stage ('Maven compile')
+		stage ('test')
 		{
 			steps {
-			echo "Maven compile"
+			sh '/opt/maven/apache-maven-3.8.6/bin/mvn clean test'
 			}
 		}
-		stage ('Maven test')
+		stage ('package')
 		{
 			steps {
-			echo "Maven test"
+			sh '/opt/maven/apache-maven-3.8.6/bin/mvn clean package'
 			}
 		}
-		stage ('Maven verify')
+		stage ('verify')
 		{
 			steps {
-			echo "Maven verify"
+			sh '/opt/maven/apache-maven-3.8.6/bin/mvn clean verify'
 			}
 		}
+	        stage ('install')
+                {
+                        steps {
+                        sh '/opt/maven/apache-maven-3.8.6/bin/mvn clean verify'
+                        }
+                }
+		stage ('deploy')
+                {
+                        steps {
+                        sh '/opt/maven/apache-maven-3.8.6/bin/mvn clean deploy'
+                        }
+                }
+
+
 	}
+
 }
