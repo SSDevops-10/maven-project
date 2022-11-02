@@ -4,7 +4,7 @@ pipeline {
 		  stage ('clean')
                 {
                         steps {
-                           sh 'mvn clean package'
+                           sh '/opt/maven/apache-maven-3.8.6/bin/mvn clean package'
                         }
                 }
 
