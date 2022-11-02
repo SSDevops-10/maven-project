@@ -4,14 +4,14 @@ pipeline {
 		  stage ('clean')
                 {
                         steps {
-                        sh 'mvn clean'
+                        echo "clean"
                         }
                 }
 
 		stage ('SCM initialize')
 		{
 			steps {
-			git 'https://github.com/SSDevops-10/demoappjenkins.git'
+			echo "Step 1"
 			}
 		}
 		stage ('Maven validate')
