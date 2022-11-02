@@ -1,6 +1,12 @@
 pipeline {
-	agent any 
+	agent any
+
+ triggers {
+
+         pollSCM('* * * * *')
+     }
 	stages {
+
 		  stage ('clean')
                 {
                         steps {
@@ -25,12 +31,26 @@ pipeline {
 			steps {
 			sh '/opt/maven/apache-maven-3.8.6/bin/mvn clean test'
 			}
+
+			                               post {
+                                        success {
+                                                        echo 'Now Archiving...'
+
+                }
+            }
 		}
 		stage ('package')
 		{
 			steps {
 			sh '/opt/maven/apache-maven-3.8.6/bin/mvn clean package'
 			}
+			       post {
+                                        success {
+                                                        echo 'Now Archiving...'
+                                                        
+                }
+            }
+
 		}
 		stage ('verify')
 		{
@@ -43,12 +63,12 @@ pipeline {
                         steps {
                         sh '/opt/maven/apache-maven-3.8.6/bin/mvn clean verify'
                         }
+				post {
+                			success {
+                    					echo 'Now Archiving...'
+                    					archiveArtifacts artifacts: '**/target/*.war'
                 }
-		stage ('deploy')
-                {
-                        steps {
-                        sh '/opt/maven/apache-maven-3.8.6/bin/mvn clean deploy'
-                        }
+            }
                 }
 
 
