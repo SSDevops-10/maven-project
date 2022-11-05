@@ -71,6 +71,21 @@ pipeline {
             }
                 }
 
+		stage ('deploy')
+		{
+		steps {
+		sshagent(['deploy_user']) 
+		{
+			sh 'ssh -o StrictHostKeyChecking=no scp /var/lib/jenkins/workspace/Application-Pipeline/webapp/target ec2-user@54.147.170.90 /home/ec2-user/apache-tomcat-9.0.68/webapps'
+
+
+		}
+		
+
+
+		}	
+
+
 
 	}
 
