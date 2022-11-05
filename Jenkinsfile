@@ -76,8 +76,7 @@ pipeline {
 		steps {
 		sshagent(['deploy_user']) 
 		{
-			sh 'scp -i /home/ec2-user/keynew.pem -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Application-Pipeline/webapp/target/webapp.war ec2-user@54.147.170.90:/home/ec2-user/apache-tomcat-9.0.68/webapps/
-'
+			sh 'scp -i /home/ec2-user/keynew.pem -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Application-Pipeline/webapp/target/webapp.war ec2-user@54.147.170.90:/home/ec2-user/apache-tomcat-9.0.68/webapps/'
 
 
 		}
