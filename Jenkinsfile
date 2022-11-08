@@ -63,7 +63,7 @@ pipeline {
 		stage ('Adding project to SonarQube')
 		{
 			steps {
-			sh 'mvn sonar:sonar \
+			sh '/opt/maven/apache-maven-3.8.6/bin/mvn sonar:sonar \
   -Dsonar.projectKey=Pipeline_Application_Pipeline \
   -Dsonar.host.url=http://54.162.108.196:9000 \
   -Dsonar.login=26a0fec56b01cd6628d5704732103cef08ffa46a'
