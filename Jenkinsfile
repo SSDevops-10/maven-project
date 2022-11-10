@@ -65,7 +65,7 @@ pipeline {
 			steps {
 			sh '/opt/maven/apache-maven-3.8.6/bin/mvn sonar:sonar \
   -Dsonar.projectKey=Pipeline_Application_Pipeline \
-  -Dsonar.host.url=http://54.162.108.196:9000 \
+  -Dsonar.host.url=http://44.203.160.162:9000 \
   -Dsonar.login=26a0fec56b01cd6628d5704732103cef08ffa46a'
   	}
 	}
@@ -87,7 +87,7 @@ pipeline {
 		steps {
 		sshagent(['deploy_user']) 
 		{
-			sh 'scp -i /home/ec2-user/keynew.pem -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Application-Pipeline/webapp/target/webapp.war ec2-user@107.22.140.34:/home/ec2-user/apache-tomcat-9.0.68/webapps/'
+			sh 'scp -i /home/ec2-user/keynew.pem -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Application-Pipeline/webapp/target/webapp.war ec2-user@3.91.20.130:/home/ec2-user/apache-tomcat-9.0.68/webapps/'
 
 
 		}
